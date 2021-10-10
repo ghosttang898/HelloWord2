@@ -1,0 +1,1 @@
+npm install @kolkov/ngx-gallery --force
