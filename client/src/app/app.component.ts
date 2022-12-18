@@ -20,14 +20,20 @@ export class AppComponent implements OnInit {
   }
 
   setCurrentUser() {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser && storedUser != "undefined") {
-      const user: User = JSON.parse(storedUser);
+    const user: User = JSON.parse(localStorage.getItem('user'));
+    if (user) {
       this.accountService.setCurrentUser(user);
-    } else {
-      // console.log('testsetsets*******************');
-      this.accountService.setCurrentUser(undefined);
+      // this.presence.createHubConnection(user);
     }
+
+    // const storedUser = localStorage.getItem('user');
+    // if (storedUser && storedUser != "undefined") {
+    //   const user: User = JSON.parse(storedUser);
+    //   this.accountService.setCurrentUser(user);
+    // } else {
+    //   // console.log('testsetsets*******************');
+    //   this.accountService.setCurrentUser(undefined);
+    // }
 
 
 

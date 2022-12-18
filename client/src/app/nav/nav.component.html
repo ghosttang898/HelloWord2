@@ -5,7 +5,8 @@
       <ul class="navbar-nav mr-auto">
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li class="nav-item">
-            <a class="nav-link" routerLink='/members' routerLinkActive='active'>Matches</a>
+            <a class="nav-link" routerLink='/members' routerLinkActive='active'
+              [routerLinkActiveOptions]="{exact:true}">Matches</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Lists</a>
@@ -34,8 +35,8 @@
         </div>
       </div>
 
-      <form *ngIf="(accountService.currentUser$ | async)===undefined" #loginFrom="ngForm"
-        class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+      <form *ngIf="(accountService.currentUser$ | async) === null" #loginFrom="ngForm" class="form-inline mt-2 mt-md-0"
+        (ngSubmit)="login()" autocomplete="off">
         <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text"
           placeholder="Username">
         <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" type="password"
