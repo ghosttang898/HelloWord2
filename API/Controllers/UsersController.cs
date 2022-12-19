@@ -65,8 +65,9 @@ namespace API.Controllers
             // var user = await _uow.UserRepository.GetUserByUsernameAsync(username);
 
             // return _mapper.Map<MemberDto>(user);
+            var currentUsername = User.GetUsername();
 
-            return await _uow.UserRepository.GetMemberAsync(username);
+            return await _uow.UserRepository.GetMemberAsync(username, isCurrentUser: currentUsername == username);
         }
 
         [HttpPut]
@@ -102,10 +103,10 @@ namespace API.Controllers
                 PublicId = result.PublicId
             };
 
-            if (user.Photos.Count == 0)
-            {
-                photo.IsMain = true;
-            }
+            // if (user.Photos.Count == 0)
+            // {
+            //     photo.IsMain = true;
+            // }
 
             user.Photos.Add(photo);
 
@@ -116,7 +117,7 @@ namespace API.Controllers
             }
 
 
-            return BadRequest("Proble addding phot");
+            return BadRequest("Problem addding phot");
         }
 
         [HttpPut("set-main-photo/{photoId}")]

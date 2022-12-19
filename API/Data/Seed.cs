@@ -42,7 +42,7 @@ namespace API.Data
                 user.PassWord = "password";
                 // user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("password"));
                 // user.PasswordSalt = hmac.Key;
-
+                user.Photos.First().isApproved = true;
                 await userManager.CreateAsync(user, "Pa$$w0rd");
                 await userManager.AddToRoleAsync(user, "Member");
             }
