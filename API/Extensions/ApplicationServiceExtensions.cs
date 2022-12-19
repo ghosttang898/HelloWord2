@@ -17,12 +17,15 @@ namespace API.Extensions
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<ILikesRepository, LikeRepository>();
             services.AddScoped<LogUserActivity>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddSignalR();
             services.AddSingleton<PresenceTracker>();
+            // IUserRepository,IMessageRepository,ILikesRepository move to IUnitOfWork
+            // services.AddScoped<IUserRepository, UserRepository>();
+            // services.AddScoped<IMessageRepository, MessageRepository>();
+            // services.AddScoped<ILikesRepository, LikeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //End of Move            
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
